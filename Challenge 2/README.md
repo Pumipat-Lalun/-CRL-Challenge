@@ -24,7 +24,7 @@ Reference design สำหรับระบบภายในที่มี We
 
 ## CI/CD
 
-![CI/CD](diagrams/cicd-pipeline.svg)
+![CI/CD](diagrams/[CRL]cicd-pipeline.svg)
 
 ใช้หลักการ: **Build once, promote the same image digest** โดยไม่ build image ใหม่ระหว่าง environment
 
