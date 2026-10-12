@@ -1,0 +1,57 @@
+{
+  "aws_region": "ap-southeast-1",
+  "project_name": "[CRL] Metabase",
+  "environment": "dev",
+  "tags": {
+    "Owner": "DevOps",
+    "CostCenter": "Lab"
+  },
+  "network": {
+    "vpc_cidr": "10.10.0.0/16",
+    "availability_zones": [
+      "ap-southeast-1a",
+      "ap-southeast-1b"
+    ],
+    "public_subnet_cidrs": [
+      "10.10.1.0/24",
+      "10.10.2.0/24"
+    ],
+    "private_app_subnet_cidrs": [
+      "10.10.11.0/24",
+      "10.10.12.0/24"
+    ],
+    "private_db_subnet_cidrs": [
+      "10.10.21.0/24",
+      "10.10.22.0/24"
+    ],
+    "single_nat_gateway": true
+  },
+  "alb": {
+    "allowed_cidr_blocks": [
+      "0.0.0.0/0"
+    ],
+    "certificate_arn": null,
+    "idle_timeout": 60
+  },
+  "metabase": {
+    "image": "metabase/metabase:latest",
+    "cpu": 1024,
+    "memory": 2048,
+    "desired_count": 1,
+    "log_retention_days": 14,
+    "health_check_grace_period_seconds": 300
+  },
+  "postgres": {
+    "engine_version": "16",
+    "instance_class": "db.t4g.micro",
+    "allocated_storage": 20,
+    "max_allocated_storage": 100,
+    "multi_az": false,
+    "backup_retention_period": 7,
+    "apply_immediately": true,
+    "deletion_protection": false,
+    "skip_final_snapshot": true,
+    "final_snapshot_identifier": null,
+    "performance_insights_enabled": false
+  }
+}

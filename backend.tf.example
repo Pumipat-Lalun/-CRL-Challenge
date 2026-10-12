@@ -1,0 +1,7 @@
+# Rename this file to backend.tf after creating the S3 bucket and DynamoDB table.
+# Supply the environment-specific values with -backend-config.
+terraform {
+  backend "s3" {
+    encrypt = true
+  }
+}

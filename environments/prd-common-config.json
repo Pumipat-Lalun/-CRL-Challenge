@@ -1,0 +1,57 @@
+{
+  "aws_region": "ap-southeast-1",
+  "project_name": "metabase",
+  "environment": "prod",
+  "tags": {
+    "Owner": "DevOps",
+    "CostCenter": "Production"
+  },
+  "network": {
+    "vpc_cidr": "10.20.0.0/16",
+    "availability_zones": [
+      "ap-southeast-1a",
+      "ap-southeast-1b"
+    ],
+    "public_subnet_cidrs": [
+      "10.20.1.0/24",
+      "10.20.2.0/24"
+    ],
+    "private_app_subnet_cidrs": [
+      "10.20.11.0/24",
+      "10.20.12.0/24"
+    ],
+    "private_db_subnet_cidrs": [
+      "10.20.21.0/24",
+      "10.20.22.0/24"
+    ],
+    "single_nat_gateway": false
+  },
+  "alb": {
+    "allowed_cidr_blocks": [
+      "0.0.0.0/0"
+    ],
+    "certificate_arn": null,
+    "idle_timeout": 60
+  },
+  "metabase": {
+    "image": "metabase/metabase:v0.63.18.x",
+    "cpu": 2048,
+    "memory": 4096,
+    "desired_count": 2,
+    "log_retention_days": 90,
+    "health_check_grace_period_seconds": 300
+  },
+  "postgres": {
+    "engine_version": "16",
+    "instance_class": "db.t4g.medium",
+    "allocated_storage": 100,
+    "max_allocated_storage": 500,
+    "multi_az": true,
+    "backup_retention_period": 14,
+    "apply_immediately": false,
+    "deletion_protection": true,
+    "skip_final_snapshot": false,
+    "final_snapshot_identifier": "metabase-prod-final-snapshot",
+    "performance_insights_enabled": true
+  }
+}
